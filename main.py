@@ -34,7 +34,8 @@ def filter_baltimore_addresses(input_file, output_file, zip_codes, st_types):
             lambda x: str(int(float(x))) if pd.notnull(x) and str(x).replace('.', '', 1).isdigit() else ''
         )
 
-
+        # Replace 'AVE' with 'AV' in ST_TYPE column
+        filtered_data['ST_TYPE'] = filtered_data['ST_TYPE'].replace("AVE", "AV")
 
         # Extract relevant columns
         addresses = filtered_data[['FULLADDR', 'BLDG_NO', 'STDIRPRE', 'ST_NAME', 'ST_TYPE', 'MAILTOADD', 'ZIP_CODE']]
